@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+
+
+</head>
+<script>
+function del(id) {
+  window.confirm('Do you want to delete student with id '+id);
+}
+function sedit(id, name, email){
+
+document.getElementById('sno').value = id;
+document.getElementById('sname').value = name;
+document.getElementById('semail').value = email;
+document.getElementById('sform').style.display = 'block';
+
+}
+    </script>
+<body>
+<center><h1>Student Management System</h1></center>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Sateesh</td>
+        <td>Sateesh@gmail.com</td>
+        <td><input type="button" value="Edit" onclick="sedit(1,'Sateesh','Sateesh@gmail.com')">&nbsp;&nbsp;
+            <input type="button" value="Delete" onclick="del(1)" style="color:red"></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Srini</td>
+        <td>Srini@gmail.com</td>
+        <td><input type="button" value="Edit"  onclick="sedit(2,'Srini','Srini@gmail.com')">&nbsp;&nbsp;
+            <input type="button" value="Delete"  onclick="del(2)" style="color:red"></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sateesh</td>
+        <td>Sateesh@gmail.com</td>
+        <td><input type="button" value="Edit">&nbsp;&nbsp;
+            <input type="button" value="Delete" onclick="del(3)" style="color:red"></td>
+    </tr>
+</table>
+<br/>
+<form id="sform" style="display:none">
+    <lable>Student ID</lable>
+    <input type="number" id="sno">
+
+    <label>Name</label>
+    <input type="text" id="sname">
+
+    <label>Email</label>
+    <input type="email" id="semail">
+
+    <input type="button" value="Submit">
+
+</form>
+</body>
+</html>
