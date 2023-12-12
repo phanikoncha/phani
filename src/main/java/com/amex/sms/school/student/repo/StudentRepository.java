@@ -18,13 +18,13 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
 
     List<Student> findAllByOrderByEmailAsc();
 
-    List<Student> findAllByOrderByNameAsc();
+    List<Student> findAllByOrderByFnameAsc();
 
     List<Student> findAllByOrderByIdAsc();
 
     List<Student> findAllByOrderByEmailDesc();
 
-    List<Student> findAllByOrderByNameDesc();
+    List<Student> findAllByOrderByFnameDesc();
 
     List<Student> findAllByOrderByIdDesc();
 }

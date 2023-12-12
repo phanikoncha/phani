@@ -1,8 +1,11 @@
 package com.amex.sms.school.rest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.amex.sms.school.SchoolApplication;
+import com.amex.sms.school.exceptions.BadRequestException;
 import com.amex.sms.school.model.AppError;
 import com.amex.sms.school.model.PaginatedResponse;
 import com.amex.sms.school.student.entity.Student;
@@ -108,8 +111,21 @@ public class StudentController {
     @PostMapping(value = "/students", produces = "application/json")
     //@ResponseStatus(value = HttpStatus.CREATED)
         public ResponseEntity<Student> create(@RequestBody @Valid Student student, HttpServletResponse httpServletResponse){
-        logger.info("CREATE request received");
-        logger.info(student.toString());
+        logger.info("CREATE request received" +student.toString());
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            student.setDob(simpleDateFormat.parse(student.getDobStr()));
+        } catch (ParseException e) {
+            logger.info("Invalid DOBStr ->"+student.getDobStr());
+            throw new BadRequestException("Date Format Should be YYYY-MM-DD");
+        }
+        try {
+            student.setDoj(simpleDateFormat.parse(student.getDojStr()));
+        } catch (ParseException e) {
+            logger.info("Invalid DOJStr ->"+student.getDojStr());
+            throw new BadRequestException("Date Format Should be YYYY-MM-DD");
+        }
+
         //httpServletResponse.setStatus(201);
         return new ResponseEntity<>(studentService.create(student),HttpStatus.CREATED);
         //return studentService.create(student);
@@ -120,6 +136,19 @@ public class StudentController {
     public Student update(@PathVariable("id") int id, @RequestBody Student student){
         logger.info("UPDATE request received for id "+id);
         logger.info(student.toString());
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            student.setDob(simpleDateFormat.parse(student.getDobStr()));
+        } catch (ParseException e) {
+            logger.info("Invalid DOBStr ->"+student.getDobStr());
+            throw new BadRequestException("Date Format Should be YYYY-MM-DD");
+        }
+        try {
+            student.setDoj(simpleDateFormat.parse(student.getDojStr()));
+        } catch (ParseException e) {
+            logger.info("Invalid DOJStr ->"+student.getDojStr());
+            throw new BadRequestException("Date Format Should be YYYY-MM-DD");
+        }
         return studentService.update(id, student);
     }
 

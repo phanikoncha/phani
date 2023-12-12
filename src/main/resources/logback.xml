@@ -1,5 +1,5 @@
 <configuration>
-    <property name="LOG_ROOT" value="/Users/Mayukha/logs" />
+    <property name="LOG_ROOT" value="/Logs" />
     <property name="LOG_FILE_NAME" value="app" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

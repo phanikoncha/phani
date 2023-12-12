@@ -44,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
                 case "email" :
                     return studentRepository.findAllByOrderByEmailAsc();
                 case "name" :
-                    return studentRepository.findAllByOrderByNameAsc();
+                    return studentRepository.findAllByOrderByFnameAsc();
                 default:
                     return studentRepository.findAllByOrderByIdAsc();
             }
@@ -54,7 +54,7 @@ public class StudentServiceImpl implements StudentService {
                 case "email":
                     return studentRepository.findAllByOrderByEmailDesc();
                 case "name":
-                    return studentRepository.findAllByOrderByNameDesc();
+                    return studentRepository.findAllByOrderByFnameDesc();
                 default:
                     return studentRepository.findAllByOrderByIdDesc();
             }

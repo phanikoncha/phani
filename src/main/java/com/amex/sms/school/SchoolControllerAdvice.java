@@ -1,5 +1,6 @@
 package com.amex.sms.school;
 
+import com.amex.sms.school.exceptions.BadRequestException;
 import com.amex.sms.school.exceptions.NotFoundException;
 import com.amex.sms.school.exceptions.RecordAlreadyExistException;
 import com.amex.sms.school.model.AppError;
@@ -28,6 +29,12 @@ public class SchoolControllerAdvice {
     public ResponseEntity<AppError> handleNotFoundException(NotFoundException ex, WebRequest request){
         AppError message = new AppError(HttpStatus.NOT_FOUND.toString(), Arrays.asList(ex.getMessage()));
         return new ResponseEntity<AppError>(message, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {BadRequestException.class})
+    public ResponseEntity<AppError> handleBadRequestException(BadRequestException ex, WebRequest request){
+        AppError message = new AppError(HttpStatus.BAD_REQUEST.toString(), Arrays.asList(ex.getMessage()));
+        return new ResponseEntity<AppError>(message, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = {RecordAlreadyExistException.class})
