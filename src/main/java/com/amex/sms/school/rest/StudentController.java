@@ -28,6 +28,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*")
 
 public class StudentController {
 
@@ -53,9 +54,9 @@ public class StudentController {
                                               @RequestParam(value="pageSize", required = false, defaultValue = "10") Integer pageSize,
                                               @RequestParam(value="sort", required = false, defaultValue = "id") String sort){
         logger.info("GET All Request received");
-        if(pageNumber > 0){
-            pageNumber = pageNumber - 1;
-        }
+        //if(pageNumber > 0){
+        //  pageNumber = pageNumber - 1;
+       // }
 
         return studentService.getStudentPagination(pageNumber, pageSize, sort, email);
     }
