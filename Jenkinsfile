@@ -1,6 +1,6 @@
 /* node {
   stage("Clone project") {
-    git branch: 'main', url: 'https://github.com/phanikoncha/phani/school_new.git'
+    git branch: 'main', url: 'https://github.com/gsateesh4u/school_new.git'
   }
 
   stage("Build project with test execution") {
@@ -15,14 +15,14 @@
 } */
 
 node {
-    def WORKSPACE = "/var/lib/jenkins/workspace/school-app"
+    def WORKSPACE = "./"
     def dockerImageTag = "school-app${env.BUILD_NUMBER}"
 try{
     notifyBuild('STARTED')
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        git url: 'https://github.com/phanikoncha/phani.git',
+        git url: 'https://github.com/PSruji/school.git',
             credentialsId: 'school-user',
             branch: 'main'
      }
@@ -31,8 +31,8 @@ try{
     }
     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
-          sh "docker stop school-app || true && docker rm school-app || true"
-          sh "docker run --name school-app -d -p 8080:8080 school-app:${env.BUILD_NUMBER}"
+          bat "docker stop school-app || (exit 0) && docker rm school-app || (exit 0)"
+          bat "docker run --name school-app -d -p 8080:8080 school-app:${env.BUILD_NUMBER}"
     }
 }catch(e){
     currentBuild.result = "FAILED"
