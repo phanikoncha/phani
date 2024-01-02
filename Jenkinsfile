@@ -1,6 +1,6 @@
 /* node {
   stage("Clone project") {
-    git branch: 'main', url: 'https://github.com/gsateesh4u/school_new.git'
+    git branch: 'main', url: 'https://github.com/phanikoncha/phani.git'
   }
 
   stage("Build project with test execution") {
@@ -22,7 +22,7 @@ try{
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        git url: 'https://github.com/PSruji/school.git',
+        git url: 'https://github.com/phanikoncha/phani.git',
             credentialsId: 'school-user',
             branch: 'main'
      }
@@ -63,7 +63,7 @@ def notifyBuild(String buildStatus = 'STARTED'){
 
   // Email notification
   emailext (
-     to: "gsateesh4u@gmail.com",
+     to: "phani.raj466@gmail.com",
      subject: subject_email,
      body: details,
      recipientProviders: [[$class: 'DevelopersRecipientProvider']]

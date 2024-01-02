@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
  * Created on 09 Nov, 2023
  * @project school
  */
-//@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class)
 class StudentControllerTest {
 
     @Mock
@@ -37,12 +37,12 @@ class StudentControllerTest {
 
 
 
- //   @Test
+   @Test
     void getAll() {
         List<Student> list= new ArrayList<>();
         for(int i=0;i<10;i++)
         {
-        //    list.add(new Student(i,"name"+i,"email"+i+"@aexp.com",null));
+          list.add(new Student());
         }
         when(studentService.getAll()).thenReturn(list);
         List<Student> response = studentController.getAll(null);
@@ -57,12 +57,14 @@ class StudentControllerTest {
     void get() {
     }
 
-   // @Test
+    @Test
     void create() {
-  //      Student student= new Student(101,"Sai","Sai@aexp.com", null);
-  //      when(studentService.create(student)).thenReturn(student);
-  //      Student response = studentController.create(student, null).getBody();
-  //      assertEquals(student,response);
+       Student student= new Student();
+       student.setDobStr("2020-12-01");
+       student.setDojStr("2021-12-01");
+     when(studentService.create(student)).thenReturn(student);
+        Student response = studentController.create(student, null).getBody();
+       assertEquals(student,response);
 
     }
 
